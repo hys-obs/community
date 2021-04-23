@@ -7,3 +7,10 @@ github:
     secret: 7436d99753a7140b68545c65a51e673502400900
   redirect:
     uri: http://localhost:8888/callback
+
+spring:
+  datasource:
+    url: jdbc:mysql:///community?serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
