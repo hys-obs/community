@@ -4,7 +4,7 @@ server:
 github:
   client:
     id: 18dfdba7c294af8e102a
-    secret: 7436d99753a7140b68545c65a51e673502400900
+    secret: 3a96c0f3114314002b965a4a755e7a5a92192cda
   redirect:
     uri: http://localhost:8888/callback
 
@@ -14,3 +14,13 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.ys.community.model
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  file:
+    path: community.log

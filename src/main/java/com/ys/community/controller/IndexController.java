@@ -1,13 +1,12 @@
 package com.ys.community.controller;
 
-import com.ys.community.mapper.UserMapper;
-import com.ys.community.model.User;
+import com.ys.community.dto.PaginationDTO;
+import com.ys.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 首页
@@ -16,23 +15,25 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController {
 
     @Autowired
-    private UserMapper userMapper;
+    private QuestionService questionService;
 
+    /**
+     * 首页
+     * @param model 用于将获取到的数据传入页面展示
+     * @param page 当前页数，默认第一页
+     * @param size 每页的问题数
+     * @return
+     */
     @GetMapping("/")
-    public String index(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            // 如果cookie中有之前存入的token，那么说明之前登录过
-            if(cookie.getName().equals("token")) {
-                String token = cookie.getValue();
-                // 根据token查找数据库中的用户，存入session中，用于页面的展示
-                User user = userMapper.findByToken(token);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
-                }
-                break;
-            }
-        }
+    public String index(Model model,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "5") Integer size,
+                        @RequestParam(name = "search", required = false) String search) {
+        PaginationDTO pagination = questionService.list(search, page, size);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("search", search);
+
+
         return "index";
     }
 }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html, charset=UTF-8">
+    <title th:text="${sectionName}"></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+
+</head>
+<body>
+<div th:insert="navgation :: nav"></div>
+<div class="container-fluid main profile">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span th:text="${sectionName}"></span></h2>
+            <hr>
+
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'questions'}">
+                <div class="media" th:each="question : ${pagination.data}">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded"
+                                 th:src="${question.getUser().getAvatarUrl()}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a th:href="@{'/question/' + ${question.id}}" th:text="${question.getTitle()}"></a>
+                        </h4>
+                        <span th:text="${question.getCommentCount()}"></span>个评论•
+                        <span th:text="${question.getViewCount()}"></span> 次浏览•
+                        <span th:text="${#calendars.format(question.gmtCreate,'yyyy MMMM dd')}"></span>
+
+                    </div>
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li th:if="${pagination.showFirstPage}">
+                            <a th:href="@{'/profile/'+${section}(page=${1})}" aria-label="Previous">
+                                <span aria-hidden="true">&lt;&lt;</span>
+                            </a>
+                        </li>
+                        <li th:if="${pagination.showPrevious}">
+                            <a th:href="@{'/profile/'+${section}(page=${pagination.page - 1})}" aria-label="Previous">
+                                <span aria-hidden="true">&lt;</span>
+                            </a>
+                        </li>
+
+                        <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page} ? 'active' : ''">
+                            <a th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}">
+
+                            </a>
+                        </li>
+                        <li th:if="${pagination.showNext}">
+                            <a th:href="@{'/profile/'+${section}(page=${pagination.page + 1})}" aria-label="Previous">
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </li>
+                        <li th:if="${pagination.showEndPage}">
+                            <a th:href="@{'/profile/'+${section}(page=${pagination.totalPage})}" aria-label="Previous">
+                                <span aria-hidden="true">&gt;&gt;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'replies'}">
+                最新回复
+                <div class="media" th:each="reply : ${pagination.data}">
+                    <span th:text="${reply.notifierName}"></span>
+                    <span th:text="${reply.typeName}"></span>
+                    <a th:href="@{'/notification/' + ${reply.id}}"><span th:text="${reply.outerTitle}"></span></a>
+                    <span th:if="${reply.status == 0}" class="glyphicon glyphicon-asterisk unread-icon"></span>
+                    <br>
+                    <span th:text="${#dates.format(reply.gmtCreate,'yyyy-MM-dd HH:mm')}" class="notification-date"></span>
+                    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                </div>
+                <!--分页-->
+<!--                <nav aria-label="Page navigation">-->
+<!--                    <ul class="pagination">-->
+<!--                        <li th:if="${notificationList.showFirstPage}">-->
+<!--                            <a th:href="@{'/profile/' + ${selection}(page=${1})}" aria-label="Previous">-->
+<!--                                <span aria-hidden="true">&lt;&lt;</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li th:if="${notificationList.showPrevious}">-->
+<!--                            <a th:href="@{'/profile/' + ${selection}(page=${notificationList.page}-1)}"-->
+<!--                               aria-label="Previous">-->
+<!--                                <span aria-hidden="true">&lt;</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li th:each="page : ${notificationList.pages}"-->
+<!--                            th:class="${notificationList.page == page} ? 'active' : ''">-->
+<!--                            <a th:text="${page}" th:href="@{'/profile/' + ${selection}(page=${page})}"></a>-->
+<!--                        </li>-->
+<!--                        <li th:if="${notificationList.showNext}">-->
+<!--                            <a th:href="@{'/profile/' + ${selection}(page=${notificationList.page}+1)}" aria-label="Next">-->
+<!--                                <span aria-hidden="true">&gt;</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li th:if="${notificationList.showEndPage}">-->
+<!--                            <a th:href="@{'/profile/' + ${selection}(page=${notificationList.totalPage})}"-->
+<!--                               aria-label="Next">-->
+<!--                                <span aria-hidden="true">&gt;&gt;</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </nav>-->
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="list-group section">
+                <a href="/profile/questions"
+                   th:class="${section == 'questions'} ? 'active list-group-item' : 'list-group-item' ">我的问题</a>
+                <a href="/profile/replies"
+                   th:class="${section == 'replies'} ? 'active list-group-item' : 'list-group-item' ">
+                    最新回复
+                    <span class="badge" th:text="${notificationCount}"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

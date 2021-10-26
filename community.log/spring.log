@@ -1,0 +1,20 @@
+2021-10-25 21:53:40.289  INFO 2368 --- [restartedMain] com.ys.community.CommunityApplication    : Starting CommunityApplication using Java 1.8.0_291 on LAPTOP-QEDN3SS6 with PID 2368 (D:\IdeaProjects\community\target\classes started by hys in D:\IdeaProjects\community)
+2021-10-25 21:53:40.298  INFO 2368 --- [restartedMain] com.ys.community.CommunityApplication    : No active profile set, falling back to default profiles: default
+2021-10-25 21:53:40.369  INFO 2368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-25 21:53:40.369  INFO 2368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-25 21:53:40.389  WARN 2368 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-10-25 21:53:41.516  INFO 2368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2021-10-25 21:53:41.524  INFO 2368 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-25 21:53:41.524  INFO 2368 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-10-25 21:53:41.605  INFO 2368 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-25 21:53:41.606  INFO 2368 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1235 ms
+2021-10-25 21:53:42.096  INFO 2368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-25 21:53:42.194  INFO 2368 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-10-25 21:53:42.374  INFO 2368 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-25 21:53:42.404  INFO 2368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2021-10-25 21:53:42.413  INFO 2368 --- [restartedMain] com.ys.community.CommunityApplication    : Started CommunityApplication in 2.637 seconds (JVM running for 3.812)
+2021-10-25 21:53:55.870  INFO 2368 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-25 21:53:55.870  INFO 2368 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-25 21:53:55.871  INFO 2368 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-10-25 21:53:55.922  INFO 2368 --- [http-nio-8888-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-25 21:53:56.088  INFO 2368 --- [http-nio-8888-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
